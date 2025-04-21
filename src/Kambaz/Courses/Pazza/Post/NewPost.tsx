@@ -187,7 +187,7 @@ export default function NewPost({ users }: { users: any[] }) {
               )}
               <div className="d-flex mt-2">
                 <button
-                  onClick={(e) => {
+                  onClick={async (e) => {
                     e.preventDefault();
                     setErrorMessage("");
                     setHasError(false);
@@ -207,12 +207,10 @@ export default function NewPost({ users }: { users: any[] }) {
                       return;
                     }
                     try {
-                      addPostHandler();
-                      setTimeout(() => {
-                        navigate(
-                          `/Kambaz/Courses/${cid}/Pazza/QandA/Post/${postId}`
-                        );
-                      }, 100);
+                      await addPostHandler();
+                      navigate(
+                        `/Kambaz/Courses/${cid}/Pazza/QandA/Post/${postId}`
+                      );
                     } catch (error: any) {
                       setHasError(true);
                     }
